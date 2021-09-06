@@ -53,7 +53,7 @@ public class Md2_061rmc160 {
 
         // 60 Zeme 9.81 B 12 @in 0.05
         double v0 = 12, t = 0, x = 0, y = 0, a, g = 9.81;
-        Boolean hitTarget = false, willNotExit=true;
+        Boolean hitTarget = false;
         outputStream.println("061RMC160 Oskars Grauzis 4");
         a = getInput(sc, outputStream, 'a');
         if (system_exit) {
@@ -69,15 +69,8 @@ public class Md2_061rmc160 {
         do {
             x = v0 * t * Math.cos(a);
             y = v0 * t * Math.sin(a) - g * Math.pow(t, 2) / 2;
-            if (x >= 17 && x <= 20 && y <= -2 && y >= -7){
+            if (x >= 17 && x <= 20 && y <= -2 && y >= -7)
                 hitTarget = true;
-                willNotExit= false;
-            }else{
-                if((x <= 11 && y <= 0) ? true
-                : (x > 11 && x < 17 && y <= -7) ? true 
-                :  (x > 20 && y <= -7)) willNotExit = false;
-            }
-                if(willNotExit)
             outputStream.println(String.format("%1$.2f\t%2$.3f\t%3$.3f", t, x, y));
             t += 0.05;
         } while ((x <= 11 && y > 0) ? true
