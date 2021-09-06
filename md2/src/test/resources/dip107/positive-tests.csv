@@ -1,0 +1,51 @@
+x, y, TheLastOneIsExpectedOutputResult
+#Green inside
+3.2, 8.2, green
+4.5, 8.5, green
+7.3, "8,2", green
+#green borders
+3, 8, red
+4, 9, red
+9, 8, red
+#blue inside
+6, 4.3, blue
+7.5, 5.9, blue
+#blue borders
+6, 4, blue
+6, 6, blue
+#red inside
+3, 4, red
+7, 10, red
+9.22, 4.43, red
+#red borders
+2, 3, red
+5.54, 11, red
+2, 7.999, red
+10, 8.86, red
+#oldtestsNewColors
+1, 1, white
+12, 3, white
+6, 9, red
+8, 2, white
+3, 2, white
+1, 8, white
+12, 1, white
+11, 4, white
+13, 5, white
+11.5, 8, white
+4, 8, red
+3, 9, red
+10, 10, red
+7, 7, red
+10, 4, red
+4, 3, red
+10, 7, red
+11.5, 8, white
+#oldtestsSame
+2, 5, red
+2.5, 8, red
+-1, 5, white
+12, 9, white
+2.5, 8, red
+1, a, input-output error
+b, -, input-output error
