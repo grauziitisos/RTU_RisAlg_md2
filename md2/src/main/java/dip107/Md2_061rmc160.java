@@ -29,6 +29,7 @@ public class Md2_061rmc160 {
             return Float.parseFloat(makeFloatString(sc.next()));
         } else {
             sc.next();
+            outputStream.println();
             outputStream.println("input-output error");
             system_exit = true;
             return -11111111.222222f;
