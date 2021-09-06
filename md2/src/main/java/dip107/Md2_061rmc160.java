@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
-public class Md1_061rmc160 {
+public class Md2_061rmc160 {
     // region utils
     private static String makeFloatString(String inputString) {
         DecimalFormat format = (DecimalFormat) DecimalFormat.getInstance();
@@ -23,27 +23,17 @@ public class Md1_061rmc160 {
 
     // no passing by reference possible in Java at all?? aww...
     private static float getInput(Scanner sc, PrintStream outputStream, char varName) {
-        // oriģināli es liku ka 3 iespējas lietotājam dotas lai ievadītu pareiza formāta datus ja
-        // kļūdījās!!!
-        // for (int i = 0; i < 4; i++) {
         outputStream.print(varName + "=");
         // infinity is an invalid value legal float value example for coordinates!
-        if (sc.hasNext("[+-]?[\\d]+([.,]\\d+)*")) {
+        if (sc.hasNext("[+-]?[\\d]+([\\.,]\\d+)?")) {
             return Float.parseFloat(makeFloatString(sc.next()));
         } else {
             sc.next();
             outputStream.println();
             outputStream.println("input-output error");
             system_exit = true;
-            // System.exit(-1);
-            // outputStream.println("nepareiza formāta ievade! Lūdzu ievadiet reālu skaitli - "
-            // + varName + " koordinātu!");
-            // outputStream.println("Mēģinājums #" + (i + 1) + " no 3");
+            return -11111111.222222f;
         }
-        // }
-        // System.exit(-1);
-        // system is exiting.. But the function must have return statement for lint.. therefore
-        return -11111111.222222f;
     }
     // endregion
 
@@ -56,34 +46,47 @@ public class Md1_061rmc160 {
 
     public static void testableMain(InputStream inputStream, PrintStream outputStream) {
         Scanner sc = new Scanner(inputStream);
-        float x = 0, y = 0;
+        // Pēdējie divi Brīvas Kaujas lauka Sākuma Leņķis Laika
+        // studenta Kaujas vieta krišanas numurs ātrums a intervāls
+        // apliecības paātrinājums g v0 (grādos) (solis) delta(t)
+        // numura cipari (m/s^2) (m/s) (s)
+
+        // 60 Zeme 9.81 B 12 @in 0.05
+        double v0 = 12, t = 0, x = 0, y = 0, a, g = 9.81;
+        Boolean hitTarget = false, willNotExit=true;
         outputStream.println("061RMC160 Oskars Grauzis 4");
-        x = getInput(sc, outputStream, 'x');
-        if (system_exit) {
-            sc.close();
-            return;
-        }
-        y = getInput(sc, outputStream, 'y');
+        a = getInput(sc, outputStream, 'a');
         if (system_exit) {
             sc.close();
             return;
         }
         outputStream.println();
-        //Trešais no beigām studenta apliecības numura cipars 1 vai 6:
+        // Trešais no beigām studenta apliecības numura cipars 1 vai 6:
         outputStream.println("result:");
-        // sarkana un zaļa (vai sarkana, zaļa un balta) - sarkana; tātad visi neieskaitot
-        if (((x - 4) * (x - 4) + (y - 8) * (y - 8) < 1 && y > 8) ? true
-                // 2. zaļais pusaplis (pa labi)
-                : (x - 8) * (x - 8) + (y - 8) * (y - 8) < 1 && y > 8)
-            outputStream.println("green");
-        // sarkana un zila(vai sarkana, zila un balta) - zila; tātad visi ieskaitot
-        else if (y >= 10 - x ? y >= x - 2 ? y <= 6 : false : false)
-            outputStream.println("blue");
-        // balta un sarkana - sarkana; - tātad visi ieskaitot
-        else if (x >= 2 && x <= 10 && y >= 3 && y <= 11)
-            outputStream.println("red");
+        outputStream.println("t \t x \t y");
+        t = 0.05;
+        // Ir jāizmanto operators do while. Ir aizliegts izmantot operatoru break
+        do {
+            x = v0 * t * Math.cos(a);
+            y = v0 * t * Math.sin(a) - g * Math.pow(t, 2) / 2;
+            if (x >= 17 && x <= 20 && y <= -2 && y >= -7){
+                hitTarget = true;
+                willNotExit= false;
+            }else{
+                if((x <= 11 && y <= 0) ? true
+                : (x > 11 && x < 17 && y <= -7) ? true 
+                :  (x > 20 && y <= -7)) willNotExit = false;
+            }
+                if(willNotExit)
+            outputStream.println(String.format("%1$.2f\t%2$.3f\t%3$.3f", t, x, y));
+            t += 0.05;
+        } while ((x <= 11 && y > 0) ? true
+                : (x > 11 && x < 17 && y > -7) ? true 
+                : (x >= 17 && x <= 20 && y > -2) ? true : (x > 20 && y > -7));
+        if (hitTarget)
+            outputStream.println("the target was destroyed");
         else
-            outputStream.println("white");
+            outputStream.println("shot off the target");
     }
     // endregion
 }
