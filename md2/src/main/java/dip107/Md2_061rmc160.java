@@ -29,7 +29,6 @@ public class Md2_061rmc160 {
             return Float.parseFloat(makeFloatString(sc.next()));
         } else {
             sc.next();
-            outputStream.println();
             outputStream.println("input-output error");
             system_exit = true;
             return -11111111.222222f;
@@ -60,7 +59,6 @@ public class Md2_061rmc160 {
             sc.close();
             return;
         }
-        outputStream.println();
         // Trešais no beigām studenta apliecības numura cipars 1 vai 6:
         outputStream.println("result:");
         outputStream.println("t \t x \t y");

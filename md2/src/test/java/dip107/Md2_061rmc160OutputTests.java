@@ -79,7 +79,7 @@ public class Md2_061rmc160OutputTests {
     }
 
     @ParameterizedTest
-    @ValueSource(floats={1})
+    @ValueSource(floats={45, 70})
     public void shouldPrintFinalResultDescription(float input) throws Exception {
         byteArrayOutputStream = new ByteArrayOutputStream();
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
