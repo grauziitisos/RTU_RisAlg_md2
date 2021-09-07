@@ -12,13 +12,14 @@ public class Md2_061rmc160ValueTests {
 
 
     private ByteArrayOutputStream byteArrayOutputStream;
+    private String ObjectUnderTestName ="dip107.Md2_061rmc160";
 
     // region valTests
     @ParameterizedTest
     @CsvFileSource(resources = "positive-tests.csv", numLinesToSkip = 1)
     void shouldPassAllExcelResultsMappingTests(String x, String expect) throws Exception {
         byteArrayOutputStream = new ByteArrayOutputStream();
-        runTest(getSimulatedUserInput(x), "dip107.Md2_061rmc160");
+        runTest(getSimulatedUserInput(x), ObjectUnderTestName);
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
         assertEquals(expect, output[output.length - 1]);
