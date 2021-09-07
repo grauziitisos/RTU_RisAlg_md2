@@ -1,8 +1,16 @@
 a, TheLastOneIsExpectedOutputResult
+19.5, "the target was destroyed"
+19.999 "shot off the target"
+26, "the target was destroyed"
+25.6589, "the target was destroyed"
 70, "the target was destroyed"
 75, "shot off the target"
-#wtf negative x values???
+#wtf negative x values??? also @15
 65, "shot off the target"
-82, "the target was destroyed"
+82, "shot off the target"
 95, "the target was destroyed"
 a, "input-output error"
+#negative angle
+-5.4443, "the target was destroyed"
+-6.1254, "shot off the target"
+-17.9254, "the target was destroyed"
