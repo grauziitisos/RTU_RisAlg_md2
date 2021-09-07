@@ -24,7 +24,7 @@ public class Md2_061rmc160 {
     // no passing by reference possible in Java at all?? aww...
     private static float getInput(Scanner sc, PrintStream outputStream, char varName) {
         outputStream.print(varName + "=");
-        //wtf-cross thread write happening?? private to class not object - omg wth
+        // wtf-cross thread write happening?? private to class not object - omg wth
         system_exit = false;
         // infinity is an invalid value legal float value example for coordinates!
         if (sc.hasNext("[+-]?[\\d]+([\\.,]\\d+)?")) {
@@ -58,7 +58,8 @@ public class Md2_061rmc160 {
         Boolean hitTarget = false;
         outputStream.println("061RMC160 Oskars Grauzis 4");
         a = getInput(sc, outputStream, 'a');
-        //TODO: pajautaat kaa jaabuut - ka enter no usera (un steramaa taatad kopa prompt a=result:)
+        // TODO: pajautaat kaa jaabuut - ka enter no usera (un steramaa taatad kopa
+        // prompt a=result:)
         outputStream.println();
         if (system_exit) {
             sc.close();
@@ -77,8 +78,7 @@ public class Md2_061rmc160 {
             outputStream.println(String.format("%1$.2f\t%2$.3f\t%3$.3f", t, x, y));
             t += 0.05;
         } while ((x <= 11 && y > 0) ? true
-                : (x > 11 && x < 17 && y > -7) ? true 
-                : (x >= 17 && x <= 20 && y > -2) ? true : (x > 20 && y > -7));
+                : (x > 11 && x < 17 && y > -7) ? true : (x >= 17 && x <= 20 && y > -2) ? true : (x > 20 && y > -7));
         if (hitTarget)
             outputStream.println("the target was destroyed");
         else
