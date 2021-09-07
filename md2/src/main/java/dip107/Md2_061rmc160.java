@@ -25,7 +25,7 @@ public class Md2_061rmc160 {
     private static float getInput(Scanner sc, PrintStream outputStream, char varName) {
         outputStream.print(varName + "=");
         //wtf-cross thread write happening?? private to class not object - omg wth
-        //system_exit = false;
+        system_exit = false;
         // infinity is an invalid value legal float value example for coordinates!
         if (sc.hasNext("[+-]?[\\d]+([\\.,]\\d+)?")) {
             return Float.parseFloat(makeFloatString(sc.next()));
