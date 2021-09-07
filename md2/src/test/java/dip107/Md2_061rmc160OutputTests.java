@@ -33,7 +33,11 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
+        Boolean hasOutItem = output.length>1;
+        if(hasOutItem)
         assertEquals("a=", output[1]);
+        else
+        assertTrue(false, "the parameter prompt should be the second line outputted!");
     }
 
     @ParameterizedTest
@@ -43,7 +47,10 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
+        if(output.length>1)
         assertEquals("input-output error", output[output.length-1], "on error should output 'input-output error'");
+        else
+        assertTrue(false, "the program should output at least one line!");
     }
 
     @ParameterizedTest
@@ -53,7 +60,12 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
+        Boolean hasOutItem = output.length>2;
+        if(hasOutItem)
+        //TODO: kaa jaabuut? "a=result:"-> ja in dos \r\n "result:"-> ja formateshu lai butu \r\n...
         assertEquals("result:", output[2]);
+        else
+        assertTrue(false, "the result: text should be the third line outputted!");
     }
 
     @ParameterizedTest
@@ -63,8 +75,13 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
-                assertTrue(output[3].matches("t\\s+x\\s+y"), "should have t x y - seperated with whitespace!");
-    }
+        //TODO: kaa jaabuut? 2-> ja in dos \r\n 3-> ja formateshu lai butu \r\n...
+        Boolean hasOutItem = output.length>3;
+        if(hasOutItem)
+        assertTrue(output[3].matches("t\\s+x\\s+y"), "should have t x y - seperated with whitespace!");
+        else
+        assertTrue(false, "the results title should be the fourth line outputted!");
+                   }
 
     @ParameterizedTest
     @ValueSource(floats={1})
@@ -73,10 +90,15 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
-                assertTrue((output[4]=="the target was destroyed" ||
-                output[4]=="shot off the target") ? true: 
-                output[4].matches("\\d[\\.,]\\d{2}\\s+\\d[\\.,]\\d{3}\\s+\\d[\\.,]\\d{3}"), "Should output result or should have t with 2 decimal places x and y with 3!");
-    }
+                Boolean hasOutItem = output.length>5;
+                if(hasOutItem)
+                //TODO: kaa jaabuut? 4-> ja in dos \r\n 5-> ja formateshu lai butu \r\n...
+                assertTrue((output[5]=="the target was destroyed" ||
+                output[5]=="shot off the target") ? true: 
+                output[5].matches("\\d[\\.,]\\d{2}\\s+\\d[\\.,]\\d{3}\\s+\\d[\\.,]\\d{3}"), "Should output result or should have t with 2 decimal places x and y with 3!");
+                else
+                assertTrue(false, "the results output should start at the fifith line outputted!");
+  }
 
     @ParameterizedTest
     @ValueSource(floats={45, 70})
@@ -85,9 +107,12 @@ public class Md2_061rmc160OutputTests {
         runTest(getSimulatedUserInput(input+""), "dip107.Md2_061rmc160");
         String[] output =
                 byteArrayOutputStream.toString().split(System.getProperty("line.separator"));
+                if(output.length>1)
                 assertTrue(output[output.length-1]=="the target was destroyed" ||
                 output[output.length-1]=="shot off the target"
                 , "should report either target destroyed or shot off!");
+                else
+                assertTrue(false, "the program should output at least one line!");
     }
 
     // endregion

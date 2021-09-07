@@ -56,6 +56,8 @@ public class Md2_061rmc160 {
         Boolean hitTarget = false;
         outputStream.println("061RMC160 Oskars Grauzis 4");
         a = getInput(sc, outputStream, 'a');
+        //TODO: pajautaat kaa jaabuut - ka enter no usera (un steramaa taatad kopa prompt a=result:)
+        outputStream.println();
         if (system_exit) {
             sc.close();
             return;
@@ -66,8 +68,8 @@ public class Md2_061rmc160 {
         t = 0.05;
         // Ir jāizmanto operators do while. Ir aizliegts izmantot operatoru break
         do {
-            x = v0 * t * Math.cos(a);
-            y = v0 * t * Math.sin(a) - g * Math.pow(t, 2) / 2;
+            x = v0 * t * Math.cos(Math.toRadians(a));
+            y = v0 * t * Math.sin(Math.toRadians(a)) - g * Math.pow(t, 2) / 2;
             if (x >= 17 && x <= 20 && y <= -2 && y >= -7)
                 hitTarget = true;
             outputStream.println(String.format("%1$.2f\t%2$.3f\t%3$.3f", t, x, y));
